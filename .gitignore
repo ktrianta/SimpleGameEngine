@@ -8,4 +8,11 @@ nbdist/
 
 # Gradle
 .gradle
+gradlew
+gradlew.bat
 /build/
+
+# Intellij
+.idea/
+*.iml
+*.iws
