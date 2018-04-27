@@ -34,4 +34,19 @@ public class Vector2DTest {
         Assert.assertEquals(vec.x, Float.MIN_VALUE, 0);
         Assert.assertEquals(vec.y, Float.MAX_VALUE, 0);
     }
+
+    /**
+     * Tests the equals method using the Assert.assertEquals method.
+     */
+    @Test
+    public void testEquality() {
+        Assert.assertEquals(new Vector2D(0,0), new Vector2D(0,0));
+        Assert.assertEquals(new Vector2D(55.5678f,0), new Vector2D(55.5678f,0));
+        Assert.assertEquals(new Vector2D(800f,-55.545678f), new Vector2D(800f,-55.545678f));
+        Assert.assertEquals(new Vector2D(0,Float.MAX_VALUE), new Vector2D(0, Float.MAX_VALUE));
+        Assert.assertEquals(new Vector2D(-0.9999f, Float.MIN_VALUE), new Vector2D(-0.9999f, Float.MIN_VALUE));
+        Assert.assertEquals(new Vector2D(Float.MAX_VALUE, Float.MIN_VALUE), new Vector2D(Float.MAX_VALUE, Float.MIN_VALUE));
+        Assert.assertEquals(new Vector2D(-1.2345678f, Float.POSITIVE_INFINITY), new Vector2D(-1.2345678f, Float.POSITIVE_INFINITY));
+        Assert.assertEquals(new Vector2D(Float.NEGATIVE_INFINITY, Float.POSITIVE_INFINITY), new Vector2D(Float.NEGATIVE_INFINITY, Float.POSITIVE_INFINITY));
+    }
 }
