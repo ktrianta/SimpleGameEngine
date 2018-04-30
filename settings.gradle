@@ -1,2 +1,6 @@
 rootProject.name = 'SimpleGameEngine'
 
+include 'core'
+include 'graphics'
+include 'math'
+include 'physics'

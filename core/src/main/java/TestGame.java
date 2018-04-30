@@ -1,5 +1,4 @@
 
-import graphics.Application;
 import org.lwjgl.opengl.GL11;
 
 public class TestGame extends Application {

@@ -1,0 +1,10 @@
+apply plugin: 'application'
+apply plugin: 'java'
+
+mainClassName = 'Main'
+
+dependencies {
+    compile project(':graphics')
+    compile project(':math')
+    compile project(':physics')
+}

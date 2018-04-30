@@ -1,44 +1,19 @@
+import org.gradle.api.artifacts.*
 
-version '0.0.1'
+apply plugin: 'base'
 
-import org.gradle.internal.os.OperatingSystem
-
-switch ( OperatingSystem.current() ) {
-case OperatingSystem.WINDOWS:
-    project.ext.lwjglNatives = "natives-windows"
-    break
-case OperatingSystem.LINUX:
-    project.ext.lwjglNatives = "natives-linux"
-    break
-case OperatingSystem.MAC_OS:
-    project.ext.lwjglNatives = "natives-macos"
-    break
+subprojects {
+    apply from: rootProject.file('common.gradle')
 }
 
-apply plugin: 'java'
-apply plugin: 'application'
+task mergedJavadoc(type: Javadoc, description: 'Creates Javadoc from all the projects.') {
+    title = 'All modules'
+    destinationDir = new File(project.buildDir, 'merged-javadoc')
 
-sourceCompatibility = 1.8
-project.ext.lwjglVersion = "3.1.6"
-
-repositories {
-    mavenCentral()
-}
-
-mainClassName = "Main"
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile "org.lwjgl:lwjgl:$lwjglVersion"
-    compile "org.lwjgl:lwjgl-assimp:$lwjglVersion"
-    compile "org.lwjgl:lwjgl-glfw:$lwjglVersion"
-    compile "org.lwjgl:lwjgl-openal:$lwjglVersion"
-    compile "org.lwjgl:lwjgl-opengl:$lwjglVersion"
-    compile "org.lwjgl:lwjgl-stb:$lwjglVersion"
-    compile "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
-    compile "org.lwjgl:lwjgl-assimp:$lwjglVersion:$lwjglNatives"
-    compile "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
-    compile "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
-    compile "org.lwjgl:lwjgl-opengl:$lwjglVersion:$lwjglNatives"
-    compile "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
+    source {
+       subprojects*.sourceSets*.main*.allSource
+    }
+    classpath.from {
+        subprojects*.configurations*.compile*.copyRecursive({ !(it instanceof ProjectDependency); })*.resolve()
+    }
 }

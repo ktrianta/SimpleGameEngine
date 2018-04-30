@@ -1,4 +1,3 @@
-package graphics;
 
 public class GameStateManager {
 
