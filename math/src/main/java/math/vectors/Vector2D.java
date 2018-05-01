@@ -1,4 +1,4 @@
-package core;
+package math.vectors;
 
 public class Vector2D {
     public float x;
