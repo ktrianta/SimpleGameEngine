@@ -1,3 +1,4 @@
+package graphics;
 
 import static org.lwjgl.glfw.GLFW.glfwGetTime;
 
