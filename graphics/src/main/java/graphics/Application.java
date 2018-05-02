@@ -1,5 +1,7 @@
 package graphics;
 
+import graphics.gamestate.GameStateManager;
+
 public abstract class Application {
 
     protected GameStateManager gsm;
@@ -9,6 +11,8 @@ public abstract class Application {
     }
 
     protected abstract void init();
+
+    protected abstract void input();
 
     protected abstract void update(float dt);
 
