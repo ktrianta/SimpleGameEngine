@@ -6,7 +6,7 @@ public abstract class Application {
 
     protected GameStateManager gsm;
 
-    public Application() {
+    protected Application() {
         gsm = new GameStateManager();
     }
 

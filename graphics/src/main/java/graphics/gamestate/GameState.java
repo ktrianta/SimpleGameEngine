@@ -2,19 +2,19 @@ package graphics.gamestate;
 
 public abstract class GameState {
 
-    private GameStateManager gsm;
+    protected GameStateManager gsm;
 
-    public GameState(GameStateManager gsm) {
+    protected GameState(GameStateManager gsm) {
         this.gsm = gsm;
     }
 
-    public abstract void init();
+    protected abstract void init();
 
-    public abstract void input();
+    protected abstract void input();
 
-    public abstract void update(float dt);
+    protected abstract void update(float dt);
 
-    public abstract void render();
+    protected abstract void render();
 
-    public abstract void dispose();
+    protected abstract void dispose();
 }
