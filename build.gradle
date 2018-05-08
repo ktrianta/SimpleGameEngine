@@ -8,11 +8,10 @@ subprojects {
 
 task mergedJavadoc(type: Javadoc, description: 'Creates Javadoc from all the projects.') {
     title = 'All modules'
-    destinationDir = new File(project.buildDir, 'merged-javadoc')
+    destinationDir = new File("${buildDir}/docs", 'javadoc')
 
-    source {
-       subprojects*.sourceSets*.main*.allSource
-    }
+    source = subprojects.collect { it.sourceSets.main.allJava }
+
     classpath.from {
         subprojects*.configurations*.compile*.copyRecursive({ !(it instanceof ProjectDependency); })*.resolve()
     }
