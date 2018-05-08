@@ -6,7 +6,7 @@ subprojects {
     apply from: rootProject.file('common.gradle')
 }
 
-task mergedJavadoc(type: Javadoc, description: 'Creates Javadoc from all the projects.') {
+task allJavadoc(type: Javadoc, description: 'Creates Javadoc from all the projects.') {
     title = 'All modules'
     destinationDir = new File("${buildDir}/docs", 'javadoc')
 
