@@ -11,12 +11,27 @@ import org.junit.runner.RunWith;
 import static org.hamcrest.CoreMatchers.*;
 
 
+/**
+ * Vector2DTest is the class responsible for testing the class Vector2D.
+ *
+ * Vector2DTest uses both JUnit Tests and Theories.
+ *
+ * From the JUnit Theories docs (github.com/junit-team/junit4/wiki/Theories):
+ * A test captures the intended behavior in one particular scenario. A theory
+ * captures some aspect of the intended behavior in possibly infinite numbers
+ * of potential scenarios.
+ */
 @RunWith(Theories.class)
 public class Vector2DTest {
     private static final int REPETITIONS = 5;
 
     @DataPoints
     public static float coordinates[] = {0.0f, -93.643f, 0.999999f, Float.NEGATIVE_INFINITY, Float.POSITIVE_INFINITY};
+
+
+    /*
+     * Constructors tests.
+     */
 
     @Test
     public void testEmptyCreation() {
@@ -32,11 +47,10 @@ public class Vector2DTest {
         Assert.assertEquals(vec.y, y, 0);
     }
 
-    @Theory
-    public void testContentEqualsIsReflexive(float x, float y) {
-        Vector2D vec = new Vector2D(x, y);
-        Assert.assertThat(vec.contentEquals(vec), is(true));
-    }
+
+    /*
+     * Method contentEquals tests.
+     */
 
     @Theory
     public void testContentEqualsReturnsTrue(float x1, float y1, float x2, float y2) {
@@ -52,6 +66,21 @@ public class Vector2DTest {
         Vector2D vec2 = new Vector2D(x2, y2);
         Assume.assumeTrue(x1 != x2 || y1 != y2);
         Assert.assertThat(vec1.contentEquals(vec2), is(false));
+    }
+
+    /*
+     * Method contentEquals should be an equivalence relation on non-null object references.
+     *  * test it is reflexive.
+     *  * test it is symmetric.
+     *  * test it is transitive.
+     *  * test it is consistent.
+     *  * test contentEquals(null) returns false.
+     */
+
+    @Theory
+    public void testContentEqualsIsReflexive(float x, float y) {
+        Vector2D vec = new Vector2D(x, y);
+        Assert.assertThat(vec.contentEquals(vec), is(true));
     }
 
     @Theory
