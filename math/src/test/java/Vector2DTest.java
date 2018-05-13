@@ -15,8 +15,7 @@ public class Vector2DTest {
     private static final int REPETITIONS = 5;
 
     @DataPoints
-    public static float coordinates[] = {0.0f, -93.643f, 0.999999f, Float.MAX_VALUE, Float.MIN_VALUE,
-            Float.NEGATIVE_INFINITY, Float.POSITIVE_INFINITY};
+    public static float coordinates[] = {0.0f, -93.643f, 0.999999f, Float.NEGATIVE_INFINITY, Float.POSITIVE_INFINITY};
 
     @Test
     public void testEmptyCreation() {
