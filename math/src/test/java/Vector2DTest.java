@@ -138,8 +138,7 @@ public class Vector2DTest {
      */
     private void assumeAdditionResultIsNotNaN(float[] addends, float[] otherAddends) {
         for (int idx = 0; idx < addends.length; idx++) {
-            Assume.assumeFalse(addends[idx] == Float.POSITIVE_INFINITY && otherAddends[idx] == Float.NEGATIVE_INFINITY);
-            Assume.assumeFalse(addends[idx] == Float.NEGATIVE_INFINITY && otherAddends[idx] == Float.POSITIVE_INFINITY);
+            Assume.assumeFalse(Float.isNaN(addends[idx] + otherAddends[idx]));
         }
     }
 
