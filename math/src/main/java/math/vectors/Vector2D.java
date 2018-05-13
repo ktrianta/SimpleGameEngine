@@ -1,6 +1,6 @@
 package math.vectors;
 
-public class Vector2D {
+public final class Vector2D {
     public float x;
     public float y;
 
