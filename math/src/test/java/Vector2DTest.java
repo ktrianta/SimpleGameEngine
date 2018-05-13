@@ -18,6 +18,13 @@ public class Vector2DTest {
     public static float coordinates[] = {0.0f, -93.643f, 0.999999f, Float.MAX_VALUE, Float.MIN_VALUE,
             Float.NEGATIVE_INFINITY, Float.POSITIVE_INFINITY};
 
+    @Test
+    public void testEmptyCreation() {
+        Vector2D vec = new Vector2D();
+        Assert.assertEquals(vec.x, 0, 0);
+        Assert.assertEquals(vec.y, 0, 0);
+    }
+
     @Theory
     public void testCreation(float x, float y) {
         Vector2D vec = new Vector2D(x, y);
