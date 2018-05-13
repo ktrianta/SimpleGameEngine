@@ -14,4 +14,16 @@ public final class Vector2D {
     public boolean contentEquals(Vector2D vec) {
         return vec != null && x == vec.x && y == vec.y;
     }
+
+    public Vector2D add(Vector2D vec) {
+        return new Vector2D(x+vec.x, y+vec.y);
+    }
+
+    public Vector2D add(float con) {
+        return new Vector2D(x+con, y+con);
+    }
+
+    public Vector2D add(float xcon, float ycon) {
+        return new Vector2D(x+xcon, y+ycon);
+    }
 }

@@ -123,4 +123,55 @@ public class Vector2DTest {
         Assert.assertArrayEquals(resultsTrue, new boolean[]{true, true, true, true, true});
         Assert.assertArrayEquals(resultsFalse, new boolean[]{false, false, false, false, false});
     }
+
+
+    /*
+     * Vector2D operations tests.
+     */
+
+    /**
+     * Creates two assumptions for every pair of (addends[i], otherAddends[i]) that resemble the fact
+     * addends[i] + otherAddends[i] should not be NaN. In other words addends[i] should not be POSITIVE_INFINITY
+     * at the same time otherAddends[i] is NEGATIVE_INFINITY and the other way around.
+     *
+     * This is a helper method. Not a test.
+     */
+    private void assumeAdditionResultIsNotNaN(float[] addends, float[] otherAddends) {
+        for (int idx = 0; idx < addends.length; idx++) {
+            Assume.assumeFalse(addends[idx] == Float.POSITIVE_INFINITY && otherAddends[idx] == Float.NEGATIVE_INFINITY);
+            Assume.assumeFalse(addends[idx] == Float.NEGATIVE_INFINITY && otherAddends[idx] == Float.POSITIVE_INFINITY);
+        }
+    }
+
+    @Theory
+    public void testAddVector(float x1, float y1, float x2, float y2) {
+        assumeAdditionResultIsNotNaN(new float[]{x1, y1}, new float[]{x2, y2});
+
+        Vector2D v1 = new Vector2D(x1, y1);
+        Vector2D v2 = new Vector2D(x2, y2);
+        Vector2D expectedResult = new Vector2D(x1+x2, y1+y2);
+
+        Assert.assertThat(v1.add(v2).contentEquals(expectedResult), is(true));
+    }
+
+    @Theory
+    public void testAddConstant(float x, float y, float c) {
+        assumeAdditionResultIsNotNaN(new float[]{x, y}, new float[]{c, c});
+
+        Vector2D v = new Vector2D(x, y);
+        Vector2D expectedResult = new Vector2D(x+c, y+c);
+
+        Assert.assertThat(v.add(c).contentEquals(expectedResult), is(true));
+    }
+
+    @Theory
+    public void testAddConstantXY(float x, float y, float cx, float cy) {
+        assumeAdditionResultIsNotNaN(new float[]{x, y}, new float[]{cx, cy});
+
+        Vector2D v = new Vector2D(x, y);
+        Vector2D expectedResult = new Vector2D(x+cx, y+cy);
+
+        Assert.assertThat(v.add(cx, cy).contentEquals(expectedResult), is(true));
+    }
+
 }
