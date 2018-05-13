@@ -2,6 +2,7 @@ import math.vectors.Vector2D;
 
 import org.junit.Assert;
 import org.junit.Assume;
+import org.junit.Test;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -77,7 +78,7 @@ public class Vector2DTest {
         Assert.assertThat(vec.contentEquals(null), is(false));
     }
 
-    @Theory
+    @Test
     public void testContentEqualsIsConsistent() {
         Vector2D vec1 = new Vector2D(coordinates[1], coordinates[3]);
         Vector2D vec2 = new Vector2D(coordinates[1], coordinates[3]);
