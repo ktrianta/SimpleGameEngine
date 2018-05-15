@@ -8,6 +8,7 @@ public abstract class Application {
 
     protected Application() {
         gsm = new GameStateManager();
+        Graphics.gsm = gsm;
     }
 
     protected abstract void init();

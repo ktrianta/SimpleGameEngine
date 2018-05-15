@@ -49,5 +49,4 @@ public class TestGame extends Application {
     public void dispose() {
         gsm.dispose();
     }
-
 }
