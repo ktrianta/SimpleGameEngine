@@ -59,7 +59,7 @@ public class OpenGLWindow {
         /* Center the window on screen */
         GLFWVidMode vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         if (vidMode != null) {
-            glfwSetWindowPos(window, (vidMode.width() - 640) / 2, (vidMode.height() - 480) / 2);
+            glfwSetWindowPos(window, (vidMode.width() - config.width) / 2, (vidMode.height() - config.height) / 2);
         }
 
         // TODO add input processing
