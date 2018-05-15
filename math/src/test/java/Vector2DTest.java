@@ -154,4 +154,77 @@ public class Vector2DTest {
         Assert.assertThat(v.add(cx, cy).contentEquals(expectedResult), is(true));
     }
 
+    @Theory
+    public void testSubVector(float x1, float y1, float x2, float y2) {
+        Vector2D v1 = new Vector2D(x1, y1);
+        Vector2D v2 = new Vector2D(x2, y2);
+        Vector2D expectedResult = new Vector2D(x1-x2, y1-y2);
+
+        Assert.assertThat(v1.sub(v2).contentEquals(expectedResult), is(true));
+    }
+
+    @Theory
+    public void testSubConstant(float x, float y, float c) {
+        Vector2D v = new Vector2D(x, y);
+        Vector2D expectedResult = new Vector2D(x-c, y-c);
+
+        Assert.assertThat(v.sub(c).contentEquals(expectedResult), is(true));
+    }
+
+    @Theory
+    public void testSubConstantXY(float x, float y, float cx, float cy) {
+        Vector2D v = new Vector2D(x, y);
+        Vector2D expectedResult = new Vector2D(x-cx, y-cy);
+
+        Assert.assertThat(v.sub(cx, cy).contentEquals(expectedResult), is(true));
+    }
+
+    @Theory
+    public void testMultConstant(float x, float y, float c) {
+        Vector2D v = new Vector2D(x, y);
+        Vector2D expectedResult = new Vector2D(x*c, y*c);
+
+        Assert.assertThat(v.mult(c).contentEquals(expectedResult), is(true));
+    }
+
+    @Theory
+    public void testDivConstant(float x, float y, float c) {
+        Vector2D v = new Vector2D(x, y);
+        Vector2D expectedResult = new Vector2D(x/c, y/c);
+
+        Assert.assertThat(v.div(c).contentEquals(expectedResult), is(true));
+    }
+
+    @Theory
+    public void testProduct(float x1, float y1, float x2, float y2) {
+        Vector2D v1 = new Vector2D(x1, y1);
+        Vector2D v2 = new Vector2D(x2, y2);
+
+        Assert.assertEquals(v1.product(v2), v2.product(v1), 0);
+        Assert.assertEquals(v1.product(v2), x1*x2 + y1*y2, 0);
+    }
+
+    @Theory
+    public void testCrossProduct(float x, float y) {
+        Vector2D v = new Vector2D(x, y);
+        Vector2D expectedResult = new Vector2D(y, -x);
+
+        Assert.assertThat(v.crossProduct().contentEquals(expectedResult), is(true));
+    }
+
+    @Theory
+    public void testMagnitude(float x, float y) {
+        Vector2D v = new Vector2D(x, y);
+
+        Assert.assertEquals(v.magnitude(), (float) Math.sqrt(x*x + y*y), 0);
+    }
+
+    @Theory
+    public void testNormalize(float x, float y) {
+        Vector2D v = new Vector2D(x, y);
+        float mag = (float) Math.sqrt(x*x+y*y);
+        Vector2D expectedResult = new Vector2D(x/mag, y/mag);
+
+        Assert.assertThat(v.normalize().contentEquals(expectedResult), is(true));
+    }
 }
